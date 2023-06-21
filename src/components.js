@@ -56,7 +56,6 @@ function UserList({ handleCheckboxClick }) {
     );
   });
 }
-// const selectedlist =Allchecked
 export function ShowUserList({ handleCheckboxClick }) {
   return (
     <>
@@ -81,33 +80,22 @@ const selectedUsers = [];
 export function Application() {
   const [displayUsers, setDisplayUsers] = useState(false);
   function handleCheckboxClick(event, id) {
-    // const { checked } = event.target;
     userdatas.map((user) => {
-      if (user.id === id) {
-        user.Ischecked = true;
-        if (user.Ischecked === true) {
+      if (event.target.checked){
+        if (user.id === id) {
           selectedUsers.push(user);
-        }
+          console.log(selectedUsers)
+      }
+      }
+      else{
+        delete selectedUsers[id-1]
+        
       }
       return selectedUsers
     }
     
     );
-
-    // if (checked) {
-    //   // setSelectedUsers(selectedUsers.filter((x) => x.id !== id));
-    //   setSelectedUsers(
-    //     user.filter((user) => {
-    //       if (user.id!== id) return user;
-    //       return false;
-    //   })
-    // );
-    // } else {
-    //   setSelectedUsers((pre) => [...pre, selectedUsers]);
-    // }
-    console.log(selectedUsers);
   }
-
   return (
     <div>
       <h1>
@@ -160,18 +148,3 @@ export function Buttons({ handleAddClick }) {
     </div>
   );
 }
-
-// const [Allchecked, setAllChecked] = useState([]);
-// function handleChange(e) {
-//    if (e.target.checked) {
-//       setAllChecked([...Allchecked, e.target.value]);
-//    } else {
-//       setAllChecked(Allchecked.filter((item) => item !== e.target.value));
-//    }
-
-// / function handleChange(e) {
-//    if (e.target.checked) {
-//     return(
-//     userdatas.filter((item) => item !== e.target.value))
-//    }
-// }
