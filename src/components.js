@@ -1,38 +1,44 @@
 import { useState } from "react";
+
 const userdatas = [
   {
     id: 1,
     name: "Ajay",
     designation: "Intern   ",
     emailId: "ajay@gmail.com   ",
+    Ischecked: false,
   },
   {
     id: 2,
     name: "Harsha",
     designation: "Intern   ",
     emailId: "hasrsha@gmail.com  ",
+    Ischecked: false,
   },
   {
     id: 3,
     name: "Sravan",
     designation: "Intern   ",
     emailId: "sravan@gmail.com  ",
+    Ischecked: false,
   },
   {
     id: 4,
     name: "Hafeez",
     designation: "Intern   ",
     emailId: "haffesz@gmail.com   ",
+    Ischecked: false,
   },
   {
     id: 5,
     name: "Vikram   ",
     designation: "Intern    ",
     emailId: "vikki@gmail.com    ",
+    Ischecked: false,
   },
 ];
 
-function UserList({ handleCheckboxClick}) {
+function UserList({ handleCheckboxClick }) {
   return userdatas.map((user) => {
     return (
       <>
@@ -60,7 +66,7 @@ export function ShowUserList({ handleCheckboxClick }) {
 }
 
 export function Displayselectedlist({ selectedUsers }) {
-  // console.log(selectedUsers);
+  console.log(selectedUsers);
   return selectedUsers.map((select) => {
     return (
       <ul>
@@ -71,24 +77,34 @@ export function Displayselectedlist({ selectedUsers }) {
     );
   });
 }
-
+const selectedUsers = [];
 export function Application() {
   const [displayUsers, setDisplayUsers] = useState(false);
-  const [selectedUsers, setSelectedUsers] = useState([userdatas]);
-  function handleCheckboxClick(event, name) {
-    const { checked } = event.target;
-    console.log(id);
-    if (checked) {
-      // setSelectedUsers(selectedUsers.filter((x) => x.id !== id));
-      setSelectedUsers(
-        selectedUsers.filter((user) => {
-          if (user.id === id) return true;
-          return false;
-        })
-      );
-    } else {
-      setSelectedUsers((pre) => [...pre, selectedUsers]);
+  function handleCheckboxClick(event, id) {
+    // const { checked } = event.target;
+    userdatas.map((user) => {
+      if (user.id === id) {
+        user.Ischecked = true;
+        if (user.Ischecked === true) {
+          selectedUsers.push(user);
+        }
+      }
+      return selectedUsers
     }
+    
+    );
+
+    // if (checked) {
+    //   // setSelectedUsers(selectedUsers.filter((x) => x.id !== id));
+    //   setSelectedUsers(
+    //     user.filter((user) => {
+    //       if (user.id!== id) return user;
+    //       return false;
+    //   })
+    // );
+    // } else {
+    //   setSelectedUsers((pre) => [...pre, selectedUsers]);
+    // }
     console.log(selectedUsers);
   }
 
